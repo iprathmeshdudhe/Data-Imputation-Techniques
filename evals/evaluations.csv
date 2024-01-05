@@ -1,0 +1,3 @@
+File,Mean Squared Error (MSE),Mean Absolute Error (MAE),Root Mean Square Error (RMSE),R2 Score
+Imputation_results/Hopper-v4_w_imputed_mice_random.csv,0.000196854,0.008658423,0.014030453,0.993258527
+Imputation_results/Hopper-v4_w_imputed_mice_random.csv,0.003098339,0.035547763,0.055662723,0.832076471

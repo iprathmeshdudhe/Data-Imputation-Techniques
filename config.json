@@ -1,0 +1,26 @@
+{
+    "create_missing" : {
+        "dataset" : "Hopper-v4",
+        "path" : "dataset/Hopper-v4.csv",
+        "observation_size" : 11,
+        "action_size" : 3,
+        "missing_data_type" : "random",
+        "percent_missing" : 60,
+        "steps" : ""
+    },
+
+    "imputation_config" : {
+        "imputer" : "nni",
+        "dataset" : "Hopper-v4",
+        "observation_size" : 11,
+        "missing_data_type" : "random",
+        "percent_missing" : 60
+    },
+
+    "eval_config" : {
+        "dataset" : "Hopper-v4",
+        "observation_size" : 11,
+        "imputer" : "mice",
+        "imputed_data_path" : "Imputation_results/Hopper-v4_w_imputed_mice_random.csv"
+    }
+}

@@ -7,7 +7,7 @@ warnings.filterwarnings("ignore")
 
 
 
-def create_missing_values_random(df, col_index, percentage):
+def create_missing_values_random(df, column, percentage):
     """
     Create missing values in the specified column of a DataFrame.
 
@@ -31,8 +31,8 @@ def create_missing_values_random(df, col_index, percentage):
     """
 
     # Validate column index
-    if col_index < 0 or col_index >= len(df.columns):
-        raise ValueError("Invalid column index")
+    if column not in df.columns:
+        raise ValueError("Invalid column passed.")
 
     # Calculate the number of missing values to create
     num_rows = df.shape[0]
@@ -43,7 +43,7 @@ def create_missing_values_random(df, col_index, percentage):
     #print(missing_indexes)
 
     # Create missing values in the specified column
-    df.iloc[missing_indexes, col_index] = np.nan
+    df.loc[missing_indexes, column] = np.nan
 
     return df
 
@@ -76,12 +76,31 @@ def create_missing_values_steps(df_column: pd.Series, start_row: int, steps: int
 
     return df_column
 
-def create_missing_dataset(dataset: str, dataset_path: str, num_of_cols: int, steps: Optional[int], random: bool, percent: Optional[int]):
+def create_missing_dataset(dataset: str, dataframe: pd.DataFrame, num_of_cols: int, miss_cols: list, steps: Optional[int], random: bool, percent: Optional[int]):
 
-    # Taking the middle indexed column to modify
+    temp = 0
+
+    for col in miss_cols:
+        col_to_mod = dataframe[col]
+        if steps:
+            mod_col = create_missing_values_steps(col_to_mod, temp, steps)
+            dataframe[col] = mod_col
+            temp += 2
+        
+        elif random:
+            dataframe = create_missing_values_random(dataframe, col, percent)
+
+    if steps:
+        file_name = f"dataset/{dataset}_w_missing_values_step.csv"
+    elif random:
+        file_name = f"dataset/{dataset}_w_missing_values_random_dchhvv.csv"
+
+    dataframe.to_csv(file_name, index=False)
+
+    '''# Taking the middle indexed column to modify
     col_index = num_of_cols // 2
 
-    dataframe = pd.read_csv(dataset_path)
+    
 
     col_to_modify_1 = dataframe.iloc[:, col_index]
     col_to_modify_2 = dataframe.iloc[:, col_index + 1]
@@ -99,10 +118,7 @@ def create_missing_dataset(dataset: str, dataset_path: str, num_of_cols: int, st
         dataframe = create_missing_values_random(dataframe, col_index, percent)
         dataframe = create_missing_values_random(dataframe, col_index+1, percent)
 
-        dataframe.to_csv(f"dataset/{dataset}_w_missing_values_random.csv", index=False)
-
-    
-
+        dataframe.to_csv(f"dataset/{dataset}_w_missing_values_random.csv", index=False)'''
 
     #dataframe.to_csv(f"dataset/{dataset}_w_missing_values.csv", index=False)
     print("Missing Data saved in \"Dataset\" Folder")

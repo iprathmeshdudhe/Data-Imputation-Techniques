@@ -1,3 +1,19 @@
-File,Mean Squared Error (MSE),Mean Absolute Error (MAE),Root Mean Square Error (RMSE),R2 Score
-Imputation_results/Hopper-v4_w_imputed_mice_random.csv,0.000196854,0.008658423,0.014030453,0.993258527
-Imputation_results/Hopper-v4_w_imputed_mice_random.csv,0.003098339,0.035547763,0.055662723,0.832076471
+File,Time Stamp,Mean Squared Error (MSE),Mean Absolute Error (MAE),Root Mean Square Error (RMSE),R2 Score
+Imputation_results/Hopper-v4_w_imputed_mice_random.csv,,0.000196854,0.008658423,0.014030453,0.993258527
+Imputation_results/Hopper-v4_w_imputed_mice_random.csv,,0.003098339,0.035547763,0.055662723,0.832076471
+Imputation_results/Hopper-v4_w_imputed_mice_random.csv,17-01-24 10:13,0.000196854,0.008658423,0.014030453,0.993258527
+Imputation_results/Hopper-v4_w_imputed_mice_random.csv,17-01-24 10:13,0.000196854,0.008658423,0.014030453,0.993258527
+Imputation_results/mimic_w_imputed_mf_random.csv,20-01-24 17:34,103.2008091,7.510543311,10.1587799,-0.106814828
+Imputation_results/mimic_w_imputed_mf_random.csv,20-01-24 17:34,3676.861003,37.68630646,60.63712562,-0.64978361
+Imputation_results/mimic_w_imputed_knn_random.csv,20-01-24 17:34,61.690989,5.837373935,7.854361145,0.338372422
+Imputation_results/mimic_w_imputed_knn_random.csv,20-01-24 17:34,2134.103723,29.05795742,46.1963605,0.042441544
+Imputation_results/mimic_w_imputed_mice_random.csv,20-01-24 17:34,72.78672004,6.239345515,8.53151335,0.219372196
+Imputation_results/mimic_w_imputed_mice_random.csv,20-01-24 17:34,2426.154253,31.23589932,49.25600727,-0.088599628
+Imputation_results/Hopper-v4_w_imputed_knn_random.csv,20-01-24 17:38,1.44E-05,0.002352095,0.003794488,0.99950692
+Imputation_results/Hopper-v4_w_imputed_knn_random.csv,20-01-24 17:38,5.28E-05,0.002807654,0.007267913,0.997137127
+Imputation_results/mimic_w_imputed_knn_random_9.csv,21-01-24 17:42,58.97836514,5.738952928,7.679737309,0.367464949
+Imputation_results/mimic_w_imputed_knn_random_9.csv,21-01-24 17:42,2027.427166,28.37475688,45.02696044,0.090306621
+Imputation_results/mimic_w_imputed_knn_random_11.csv,21-01-24 17:42,58.44674968,5.717949366,7.645047396,0.373166453
+Imputation_results/mimic_w_imputed_knn_random_11.csv,21-01-24 17:42,2010.864327,28.23349877,44.84266191,0.09773826
+Imputation_results/mimic_w_imputed_knn_random_13.csv,21-01-24 17:43,58.09533818,5.703608594,7.622029794,0.376935295
+Imputation_results/mimic_w_imputed_knn_random_13.csv,21-01-24 17:43,2002.548351,28.15050588,44.74984191,0.101469584

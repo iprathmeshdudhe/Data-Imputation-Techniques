@@ -2,7 +2,7 @@ import matplotlib.pylab as plt
 import pandas as pd
 import seaborn as sns
 
-def plot_line(predictions, actual):
+def plot_line(predictions, actual, dataset_name: str, imputer: str, variable: str):
     # Create a DataFrame
     df = pd.DataFrame({'Actual': actual, 'Predictions': predictions})
 
@@ -15,9 +15,9 @@ def plot_line(predictions, actual):
     ax = sns.lineplot(data=df)
     
     # Customize the plot
-    ax.set_title("Actual and Predicted Comparison")
+    ax.set_title(f"Actual vs Predicted - {dataset_name} & {imputer} - {variable}")
     ax.set(xlabel="Timesteps", ylabel="Observations")
     plt.legend()  # You can adjust the location as needed
-    
+    plt.savefig(f"imputation_plots/{dataset_name}_{imputer}_{variable}.png")
     # Show the plot
-    plt.show()
+    #plt.show()

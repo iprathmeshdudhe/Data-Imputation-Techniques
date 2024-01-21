@@ -1,6 +1,7 @@
 import os
 import csv
 import numpy as np
+from datetime import datetime
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 
 class Evaluation:
@@ -14,6 +15,8 @@ class Evaluation:
         file_path = "evals/evaluations.csv"
         flag = os.path.exists(file_path)
 
+        time = datetime.now().strftime("%d/%m/%y %H:%M:%S")
+
         
         with open(file_path, mode="a", newline="") as csv_file:
             csv_writer = csv.writer(csv_file)
@@ -25,6 +28,7 @@ class Evaluation:
                     delimiter=",",
                     fieldnames=[
                         "File",
+                        "Time Stamp"
                         "Mean Squared Error (MSE)",
                         "Mean Absolute Error (MAE)",
                         "Root Mean Square Error (RMSE)",
@@ -34,7 +38,7 @@ class Evaluation:
 
                 dw.writeheader()
 
-            csv_writer.writerow([file_name, mse, mae, rmse, r2])
+            csv_writer.writerow([file_name, time, mse, mae, rmse, r2])
 
         print(f"Evalution for {file_name} saved at {file_path}.")
 

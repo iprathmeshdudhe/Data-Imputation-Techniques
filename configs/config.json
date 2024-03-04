@@ -1,29 +1,28 @@
 {
     "create_missing" : {
-        "dataset" : "mimic",
-        "path" : "dataset/mimic_full_data.csv",
+        "dataset" : "mimiciv",
+        "path" : "dataset/mimiciv_full_data.csv",
         "observation_size" : 11,
         "action_size" : 3,
         "missing_columns" : ["blood_paco2", "blood_pao2"],
-        "missing_data_type" : "random",
+        "missing_type" : "random",
         "percent_missing" : 60,
         "steps" : ""
     },
 
     "imputation_config" : {
-        "imputer" : "knn",
-        "dataset" : "mimic",
+        "imputer" : "nn",
+        "dataset" : "mimiciv",
         "observation_size" : 11,
         "missing_columns" : ["blood_paco2", "blood_pao2"],
-        "missing_data_type" : "random",
-        "percent_missing" : 60
+        "missing_type" : "random"
     },
 
     "eval_config" : {
-        "dataset" : "mimic",
+        "dataset" : "mimiciv",
         "observation_size" : 11,
         "missing_columns" : ["blood_paco2", "blood_pao2"],
-        "imputer" : "knn",
-        "imputed_data_path" : "Imputation_results/mimic_w_imputed_knn_random_13.csv"
+        "imputer" : "nn",
+        "imputed_data_path" : "Imputation_results/mimiciv_w_imputed_nn_random.csv"
     }
 }

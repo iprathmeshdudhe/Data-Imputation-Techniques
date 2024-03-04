@@ -6,6 +6,8 @@ from sklearn.experimental import enable_iterative_imputer
 from sklearn.impute import IterativeImputer
 from miceforest import mean_match_default, mean_match_shap
 
+from utils.impute_fill import fill_missing_with_imputed_data
+
 
 
 class MiceImputer:
@@ -28,8 +30,10 @@ class MiceImputer:
         #X_imputated = mice.transform(dataframe)
         imputed_df = pd.DataFrame(imputed_data, columns=columns)
 
+        filled_data = fill_missing_with_imputed_data(dataset, imputed_df)
+
         print("Saving the imputed data \n")
-        imputed_df.to_csv(f"Imputation_results/{dataset}_w_imputed_mice_{missing_type}.csv", index=False)
+        filled_data.to_csv(f"Imputation_results/{dataset}_w_imputed_mice_{missing_type}.csv", index=False)
         print(f"Imputed Data saved at location \"Imputation_results/{dataset}_w_imputed_mice_{missing_type}.csv\"")
 
 
@@ -51,6 +55,9 @@ class MiceImputer:
 
         X_imputated = kds.complete_data()
         imputed_df = pd.DataFrame(X_imputated, columns=columns)
+
+        filled_data = fill_missing_with_imputed_data(dataset, imputed_df)
+
         print("Saving the imputed data \n")
-        imputed_df.to_csv(f"Imputation_results/{dataset}_w_imputed_mf_{missing_type}.csv", index=False)
+        filled_data.to_csv(f"Imputation_results/{dataset}_w_imputed_mf_{missing_type}.csv", index=False)
         print(f"Imputed Data saved at location \"Imputation_results/{dataset}_w_imputed_mf_{missing_type}.csv\"")

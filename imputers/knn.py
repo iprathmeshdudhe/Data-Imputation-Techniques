@@ -39,7 +39,7 @@ class KNN:
 
     def impute_data(df: pd.DataFrame, dataset: str, missing_type: str):
 
-        neighbors = [13]
+        neighbors = [5, 9, 13, 15]
 
         for n in neighbors:
             print(f"Performing KNN for {n} Neighbors. \n")

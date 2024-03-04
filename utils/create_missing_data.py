@@ -76,7 +76,7 @@ def create_missing_values_steps(df_column: pd.Series, start_row: int, steps: int
 
     return df_column
 
-def create_missing_dataset(dataset: str, dataframe: pd.DataFrame, num_of_cols: int, miss_cols: list, steps: Optional[int], random: bool, percent: Optional[int]):
+def create_missing_dataset(dataset: str, dataframe: pd.DataFrame, num_of_cols: int, miss_cols: list, steps: Optional[int], random: bool, percent: Optional[int] = 60):
 
     temp = 0
 
@@ -93,7 +93,7 @@ def create_missing_dataset(dataset: str, dataframe: pd.DataFrame, num_of_cols: i
     if steps:
         file_name = f"dataset/{dataset}_w_missing_values_step.csv"
     elif random:
-        file_name = f"dataset/{dataset}_w_missing_values_random_dchhvv.csv"
+        file_name = f"dataset/{dataset}_w_missing_values_random.csv"
 
     dataframe.to_csv(file_name, index=False)
 

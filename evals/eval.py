@@ -6,7 +6,7 @@ from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 
 class Evaluation:
 
-    def scores(og_col, imputed_col, file_name):
+    def scores(og_col, imputed_col, file_name, feature):
         mse = mean_squared_error(og_col, imputed_col)
         mae = mean_absolute_error(og_col, imputed_col)
         rmse = np.sqrt(mse)
@@ -33,12 +33,13 @@ class Evaluation:
                         "Mean Absolute Error (MAE)",
                         "Root Mean Square Error (RMSE)",
                         "R2 Score",
+                        "Feature"
                     ],
                 )
 
                 dw.writeheader()
 
-            csv_writer.writerow([file_name, time, mse, mae, rmse, r2])
+            csv_writer.writerow([file_name, time, mse, mae, rmse, r2, feature])
 
         print(f"Evalution for {file_name} saved at {file_path}.")
 

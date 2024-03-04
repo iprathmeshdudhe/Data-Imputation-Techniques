@@ -1,15 +1,13 @@
 import pandas as pd
 import numpy as np
+from tqdm import tqdm
+
 from sklearn.impute import KNNImputer
 from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 from sklearn.model_selection import cross_val_score, cross_val_predict, RepeatedStratifiedKFold
 from sklearn.pipeline import Pipeline
-from multiprocessing import Pool
 
-from tqdm import tqdm
-#import matplotlib.pyplot as plt
-#from cuml.impute import KNNImputer as cuKNNImputer
-
+from utils.impute_fill import fill_missing_with_imputed_data
 
 class KNN:
 
@@ -41,7 +39,7 @@ class KNN:
 
     def impute_data(df: pd.DataFrame, dataset: str, missing_type: str):
 
-        neighbors = [9, 11, 13]
+        neighbors = [13]
 
         for n in neighbors:
             print(f"Performing KNN for {n} Neighbors. \n")
@@ -52,10 +50,8 @@ class KNN:
             X_imputed = KNN.transform_with_progress_bar(imputer, df.to_numpy())
 
             imputed_df = pd.DataFrame(X_imputed, columns=df.columns)
+
+            filled_data = fill_missing_with_imputed_data(dataset, imputed_df)
             print("Saving the imputed data \n")
-            imputed_df.to_csv(f"Imputation_results/{dataset}_w_imputed_knn_{missing_type}_{n}.csv", index=False)
-            print(f"Imputed Data saved at location \"Imputation_results/{dataset}_w_imputed_knn_{missing_type}_{n}.csv\"")
-
-
-    
-
+            filled_data.to_csv(f"Imputation_results/{dataset}_w_imputed_knn_random_{n}.csv", index=False)
+            print(f"Imputed Data saved at location \"Imputation_results/{dataset}_w_imputed_knn_random_{n}.csv\"")

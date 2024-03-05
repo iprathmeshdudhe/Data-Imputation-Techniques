@@ -27,3 +27,34 @@ def plot_percentage_bar(dataframe: pd.DataFrame, dataset_name: str):
     plt.savefig(f"stats/{dataset_name}_percentage_stats.png")
     
     plt.show()
+
+
+def corr_mat(data: pd.DataFrame, dataset_name: str):
+    # Calculate the correlation matrix
+    correlation_matrix = data.corr()
+
+    # Plot the correlation matrix as a heatmap
+    sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', fmt=".2f")
+    plt.title('Correlation Between Observations')
+    #plt.savefig(f"stats/{dataset_name}_corr_mat.png", bbox_inches='tight')
+    plt.show()
+
+
+def observation_trend(col: pd.Series):
+    # Set the style and context for Seaborn
+    sns.set(style="darkgrid")
+    sns.set_context("talk")
+
+    # Plotting the data using Seaborn
+    plt.figure(figsize=(18, 6))
+    ax = sns.lineplot(data=col)
+
+    # Customize the plot
+    ax.set_title(f"Observation Trend Over Time - {col.name}")
+    ax.set(xlabel="Timesteps", ylabel="Observations")
+    plt.savefig(f"stats/observation_trend_{col.name}.png", bbox_inches='tight')
+
+
+data, name = pd.read_csv("dataset/mimiciv_obs_data_not_null.csv"), "mimiciv"
+#write_missing_data_stats(data, name)
+corr_mat(data, name)

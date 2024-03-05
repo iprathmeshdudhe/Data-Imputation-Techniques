@@ -30,14 +30,14 @@ def load_obs_data(dataset: str, columns: list, missing_type: str):
 
     return df
 
-def load_non_missing_data(dataset: str, columns: list, miss_cols: list, splitted: bool, predict_data: bool, target_col: str = None):
+def load_non_missing_data(dataset: str, columns: list, miss_cols: list, splitted: bool, test_data: bool, target_col: str = None):
 
     file_path = f"dataset/{dataset}_w_missing_values_random.csv"
     df = pd.read_csv(file_path, usecols=columns)
     #print(df.shape)
     df = df.dropna(subset=miss_cols)
 
-    if splitted and not predict_data:
+    if splitted and not test_data:
         X = df.drop(miss_cols, axis=1)
         y = df.loc[:, target_col]
 
@@ -45,15 +45,15 @@ def load_non_missing_data(dataset: str, columns: list, miss_cols: list, splitted
         X_tr, X_val, y_tr, y_val = train_test_split(X, y, test_size=0.25, random_state=42, shuffle=True)
         return X_tr, X_val, y_tr, y_val
     
-    elif predict_data and not splitted:
+    elif test_data and not splitted:
         dataframe = pd.read_csv(file_path, usecols=columns)
         dataframe = dataframe[dataframe.loc[:, target_col].isna()]
 
-        test_data = dataframe.drop(miss_cols, axis=1)
-        return test_data
+        test_data_df = dataframe.drop(miss_cols, axis=1)
+        return test_data_df
     
-    elif splitted and predict_data:
-        print("Error: Both splitted and predict_data cannot be true at same time.")
+    elif splitted and test_data:
+        print("Error: Both splitted and test_data cannot be true at same time.")
     
     else:
         return df
@@ -77,10 +77,10 @@ def load_missing_data(dataset: str, feature_size: int):
 
 def load_eval_columns(dataset: str, miss_cols: list, imputed_data_path: str):
 
-    all_data = pd.read_csv(f"dataset/mimic_full_data.csv", usecols=miss_cols)
+    #all_data = pd.read_csv(f"dataset/mimic_full_data.csv", usecols=miss_cols)
 
-    if dataset == "mimic":
-        all_data = pd.read_csv(f"dataset/mimic_full_data.csv", usecols=miss_cols)
+    if dataset == "mimiciv":
+        all_data = pd.read_csv(f"dataset/mimiciv_full_data.csv", usecols=miss_cols)
     else:
         all_data = pd.read_csv(f"dataset/{dataset}.csv", usecols=miss_cols)
 

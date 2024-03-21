@@ -76,7 +76,7 @@ def create_missing_values_steps(df_column: pd.Series, start_row: int, steps: int
 
     return df_column
 
-def create_missing_dataset(dataset: str, dataframe: pd.DataFrame, num_of_cols: int, miss_cols: list, steps: Optional[int], random: bool, percent: Optional[int] = 60):
+def create_missing_dataset(dataset: str, dataframe: pd.DataFrame, miss_cols: list, steps: Optional[int], random: bool, percent: Optional[int] = 60):
 
     temp = 0
 

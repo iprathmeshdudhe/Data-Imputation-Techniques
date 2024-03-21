@@ -54,8 +54,7 @@ def get_yaml():
         logger.exception(exc)
         sys.exit(1)
 
-    miss_data_path = nn_config["MISSING_DATA_PATH"]
     train, test, train_test = nn_config["TRAIN"], nn_config["TEST"], nn_config["TRAIN_TEST"]
     model_path = nn_config["MODEL_PATH"]
 
-    return miss_data_path, train, test, train_test, model_path
+    return train, test, train_test, model_path

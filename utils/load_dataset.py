@@ -1,12 +1,13 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
-def load_obs_act_data(dataset: str,  feature_size: int , action_size: int):
+
+def load_obs_act_data(dataset_cfg):
     # Create a list of column indices based on feature_size and action_size
-    columns = [i for i in range(feature_size + action_size)]
+    columns = dataset_cfg.state_vector + dataset_cfg.action_vector
 
     # Construct the file path
-    file_path = f"dataset/{dataset}_w_missing_values_random.csv"
+    file_path = dataset_cfg.missing_data_path
 
     # Read the CSV file using pd.read_csv with specified columns
     df = pd.read_csv(file_path, usecols=columns)
@@ -20,20 +21,20 @@ def load_full_data(dataset_path: str,  columns: list):
 
     return df
 
-def load_obs_data(dataset: str, columns: list, missing_type: str):
+def load_obs_data(dataset_cfg):
     
     # Construct the file path
-    file_path = f"dataset/{dataset}_w_missing_values_{missing_type}.csv"
+    file_path = dataset_cfg.missing_data_path
+    columns = dataset_cfg.state_vector
 
     # Read the CSV file using pd.read_csv with specified columns
     df = pd.read_csv(file_path, usecols=columns)
 
     return df
 
-def load_non_missing_data(dataset: str, columns: list, miss_cols: list, splitted: bool, test_data: bool, target_col: str = None):
-
-    file_path = f"dataset/{dataset}_w_missing_values_random.csv"
-    df = pd.read_csv(file_path, usecols=columns)
+def load_non_missing_data(data_path, columns: list, miss_cols: list, splitted: bool, test_data: bool, target_col: str = None):
+    # Read the CSV file using pd.read_csv with specified columns
+    df = pd.read_csv(data_path, usecols=columns)
     #print(df.shape)
     df = df.dropna(subset=miss_cols)
 
@@ -46,7 +47,7 @@ def load_non_missing_data(dataset: str, columns: list, miss_cols: list, splitted
         return X_tr, X_val, y_tr, y_val
     
     elif test_data and not splitted:
-        dataframe = pd.read_csv(file_path, usecols=columns)
+        dataframe = pd.read_csv(data_path, usecols=columns)
         dataframe = dataframe[dataframe.loc[:, target_col].isna()]
 
         test_data_df = dataframe.drop(miss_cols, axis=1)
@@ -75,17 +76,15 @@ def load_missing_data(dataset: str, feature_size: int):
     return df_col1_miss, df_col2_miss
     
 
-def load_eval_columns(dataset: str, miss_cols: list, imputed_data_path: str):
+def load_eval_columns(dataset_cfg, imputer):
 
     #all_data = pd.read_csv(f"dataset/mimic_full_data.csv", usecols=miss_cols)
+    miss_cols = dataset_cfg.missing_state_vector
 
-    if dataset == "mimiciv":
-        all_data = pd.read_csv(f"dataset/mimiciv_full_data.csv", usecols=miss_cols)
-    else:
-        all_data = pd.read_csv(f"dataset/{dataset}.csv", usecols=miss_cols)
+    all_data = pd.read_csv(dataset_cfg.full_data_path, usecols=miss_cols)
 
-    missing_data = pd.read_csv(f"dataset/{dataset}_w_missing_values_random.csv", usecols=miss_cols)
-    imputed_data = pd.read_csv(imputed_data_path, usecols=miss_cols)
+    missing_data = pd.read_csv(dataset_cfg.missing_data_path, usecols=miss_cols)
+    imputed_data = pd.read_csv(f"{dataset_cfg.imputed_data_path}_{imputer}.csv", usecols=miss_cols)
 
     '''# Get row index of np.nan values for the missing values columns
     miss_col1_row_index, miss_col2_row_index = missing_data.iloc[:, 0].isna(), missing_data.iloc[:, 1].isna()

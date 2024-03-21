@@ -12,7 +12,7 @@ from utils.impute_fill import fill_missing_with_imputed_data
 
 class MiceImputer:
 
-    def mice_impute(dataframe: pd.DataFrame, dataset: str, missing_type: str):
+    def mice_impute(dataframe: pd.DataFrame, dataset_cfg):
 
         columns = dataframe.columns
 
@@ -30,14 +30,14 @@ class MiceImputer:
         #X_imputated = mice.transform(dataframe)
         imputed_df = pd.DataFrame(imputed_data, columns=columns)
 
-        filled_data = fill_missing_with_imputed_data(dataset, imputed_df)
+        filled_data = fill_missing_with_imputed_data(dataset_cfg.missing_data_path, imputed_df)
 
         print("Saving the imputed data \n")
-        filled_data.to_csv(f"Imputation_results/{dataset}_w_imputed_mice_{missing_type}.csv", index=False)
-        print(f"Imputed Data saved at location \"Imputation_results/{dataset}_w_imputed_mice_{missing_type}.csv\"")
+        filled_data.to_csv(f"{dataset_cfg.imputed_data_path}_mice.csv", index=False)
+        print(f"Imputed Data saved at location \"{dataset_cfg.imputed_data_path}_mice.csv\"")
 
 
-    def mice_forest(dataframe: pd.DataFrame, dataset: str,  missing_type: str):
+    def mice_forest(dataframe: pd.DataFrame, dataset_cfg):
         print("mf")
         mean_match_custom = mean_match_default.copy()
         mean_match_custom.set_mean_match_candidates(32)
@@ -56,8 +56,8 @@ class MiceImputer:
         X_imputated = kds.complete_data()
         imputed_df = pd.DataFrame(X_imputated, columns=columns)
 
-        filled_data = fill_missing_with_imputed_data(dataset, imputed_df)
+        filled_data = fill_missing_with_imputed_data(dataset_cfg.missing_data_path, imputed_df)
 
         print("Saving the imputed data \n")
-        filled_data.to_csv(f"Imputation_results/{dataset}_w_imputed_mf_{missing_type}.csv", index=False)
-        print(f"Imputed Data saved at location \"Imputation_results/{dataset}_w_imputed_mf_{missing_type}.csv\"")
+        filled_data.to_csv(f"{dataset_cfg.imputed_data_path}_mf.csv", index=False)
+        print(f"Imputed Data saved at location \"{dataset_cfg.imputed_data_path}_mf.csv\"")

@@ -3,29 +3,10 @@ import numpy as np
 from tqdm import tqdm
 
 from sklearn.impute import KNNImputer
-from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
-from sklearn.model_selection import cross_val_score, cross_val_predict, RepeatedStratifiedKFold
-from sklearn.pipeline import Pipeline
 
 from utils.impute_fill import fill_missing_with_imputed_data
 
 class KNN:
-
-    def get_score(X, Y):
-    
-        # evaluate each strategy on the dataset
-        results = list()
-        strategies = [str(i) for i in [1,3,5,7,9,15,18,21]]
-        for s in strategies:
-            # create the modeling pipeline
-            pipeline = Pipeline(steps=[('i', KNNImputer(n_neighbors=int(s))), ('m', RandomForestClassifier())])
-            # evaluate the model
-            cv = RepeatedStratifiedKFold(n_splits=5, n_repeats=3, random_state=1)
-            scores = cross_val_score(pipeline, X, Y, scoring='neg_mean_squared_error', cv=cv, n_jobs=-1)
-            # Use cross_val_predict to get imputed values for each fold
-            # store results
-            results.append(scores)
-            print('>%s %.3f (%.3f)' % (s, np.mean(scores), np.std(scores)))
 
     def transform_with_progress_bar(imputer, X):
         n_rows = X.shape[0]
@@ -37,9 +18,9 @@ class KNN:
 
 
 
-    def impute_data(df: pd.DataFrame, dataset: str, missing_type: str):
+    def impute_data(df: pd.DataFrame, dataset_cfg):
 
-        neighbors = [5, 9, 13, 15]
+        neighbors = [13]
 
         for n in neighbors:
             print(f"Performing KNN for {n} Neighbors. \n")
@@ -51,7 +32,8 @@ class KNN:
 
             imputed_df = pd.DataFrame(X_imputed, columns=df.columns)
 
-            filled_data = fill_missing_with_imputed_data(dataset, imputed_df)
+            filled_data = fill_missing_with_imputed_data(dataset_cfg.missing_data_path, imputed_df)
             print("Saving the imputed data \n")
-            filled_data.to_csv(f"Imputation_results/{dataset}_w_imputed_knn_random_{n}.csv", index=False)
-            print(f"Imputed Data saved at location \"Imputation_results/{dataset}_w_imputed_knn_random_{n}.csv\"")
+
+            filled_data.to_csv(f"{dataset_cfg.imputed_data_path}_knn_{n}.csv", index=False)
+            print(f"Imputed Data saved at location \"{dataset_cfg.imputed_data_path}_knn_{n}.csv\"")

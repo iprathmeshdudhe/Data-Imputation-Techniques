@@ -1,8 +1,7 @@
-MISSING_DATA_PATH: dataset/mimiciv_w_missing_values_random.csv
 # Set train test mode for the Neural Nets mode
 TRAIN: False
-TEST: False
 TRAIN_TEST: True
 # -----------------------------------------------------------
 # If test is set to True, remove the path incase of TRAIN_TEST
-MODEL_PATH: None
+TEST: False
+MODEL_PATH: 

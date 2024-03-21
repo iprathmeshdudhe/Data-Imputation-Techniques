@@ -1,6 +1,6 @@
 {
     "create_missing" : {
-        "dataset" : "mimiciv",
+        "dataset" : "tud",
         "path" : "dataset/mimiciv_full_data.csv",
         "observation_size" : 11,
         "action_size" : 3,
@@ -12,14 +12,14 @@
 
     "imputation_config" : {
         "imputer" : "nn",
-        "dataset" : "mimiciv",
-        "observation_size" : 11,
-        "missing_columns" : ["blood_paco2", "blood_pao2"],
-        "missing_type" : "random"
+        "dataset" : "tud",
+        "observation_size" : 1,
+        "missing_columns" : [],
+        "missing_type" : ""
     },
 
     "eval_config" : {
-        "dataset" : "mimiciv",
+        "dataset" : "tud",
         "observation_size" : 11,
         "missing_columns" : ["blood_paco2", "blood_pao2"],
         "imputer" : "nn",

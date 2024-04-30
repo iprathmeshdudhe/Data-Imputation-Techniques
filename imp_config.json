@@ -1,0 +1,22 @@
+{
+    "mimiciv" : {
+        "name" : "Mimic IV",
+        "state_vector" : ["blood_be", "blood_hco3", "blood_ph", "drugs_vaso4h", "vital_map", 
+        "vital_DBP", "vital_SBP", "blood_INR", "blood_PTT", "daemo_sex",
+        "daemo_weight", "daemo_height", "daemo_discharge", "ecmo_active",
+        "blood_calcium", "blood_chlorid", "blood_caion", "blood_magnes",
+        "blood_potas", "blood_sodium", "cum_fluid_balance", "state_ivfluid4h",
+        "blood_paco2", "blood_pao2", "vent_fio2", "vital_spo2", "blood_sao2",
+        "blood_plat", "blood_hb", "blood_hct", "blood_wbc", "vital_hr",
+        "state_bun", "blood_crea", "state_urin4h", "blood_ast", "blood_alt",
+        "blood_billi", "blood_lac", "blood_gluco", "state_temp", "vent_inspexp",
+        "vent_insp", "vent_pinsp", "vent_mairpress", "vent_mv", "vent_peep",
+        "vent_rrtot", "vent_rrcontrolled", "vent_rrspont", "vent_suppress",
+        "vent_vt", "vent_vtnorm", "vent_mode", "state_airtype", "daemo_morta"],
+        "missing_state_vector" : ["blood_chlorid"],
+        "data_name" : "MIMICIV",
+        "full_data_path" : "dataset/mimiciv_full_data.csv",
+        "imputed_data_path" : "dataset/mimiciv_blood_chlorid_imp"      ,
+        "missing_data_path" : "dataset/mimiciv_blood_chlorid_w_missing_values_random.csv"
+    }
+}

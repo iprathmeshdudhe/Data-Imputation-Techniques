@@ -7,7 +7,7 @@ There are 3 modes to run the main.py
 2. impute
    - For mimiciv, just directly use the imputer.
    - In main.py, input which imputer do you want to use in the config file.
-   - Define the dataset_config which appropriate values.
+   - Define the dataset_config with appropriate values.
    - The state_vectors should contain independent x variables and also the missing variables. Here the missing variables are added just to load the data. 
 3. eval
    - It needs the list of imputers for which you want to check the performance.

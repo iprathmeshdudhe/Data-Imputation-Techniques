@@ -1,13 +1,15 @@
-# Data Imputation---GRU
-## Data Imputation Techniques during Mechanical Ventilation Periods
+# MIMIC - IV Imputation
 
-Mechanical Ventilation is a critical life-saving intervention for patients facing respiratory failure in healthcare settings. However, the reliability of data collected during these ventilation periods is often compromised due to interruptions, sensor failures, and various other issues, resulting in incomplete datasets. The "Data Imputation Techniques during Mechanical Ventilation Periods" research project addresses this crucial challenge by exploring and comparing different data imputation techniques.
-
-
-## Data Report
-| Dataset  | Size  | State_vectors                                                                                                                                                                                                                                                                                                          | Missing_cols                            | Missing_percentage |
-| -------- | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- | ------------------ |
-| TUD      | 76696 | ["SaO2","BEa","pHa","Lactat","SpO2","HaCO3","PaCO2"]                                                                                                                                                                                                                                                                   | ["BEa", "pHa"]                          | 60%                |
-| MIMIC    | 4686  | ["vent_etco2", "blood_paco2", "blood_pao2", "vent_fio2", <br/> "vital_spo2", "vital_hr", "vent_rrtot"]                                                                                                                                                                                                                       | ["blood_paco2", "blood_pao2"]           | 60%                |
-| MIMIC_v2 | 10284  | ["vent_vtnorm","vent_mairpress","blood_be","cum_fluid_balance",<br/>"blood_sodium","vital_SBP","state_ivfluid4h","vent_mv",<br/>"blood_hco3","vent_vt","vent_inspexp","blood_paco2",<br/>"vent_rrtot","blood_chlorid","blood_hb","vent_mode",<br/>"vital_map","blood_hct","vent_peep","vital_DBP",<br/>"blood_ph","vent_pinsp","vent_suppress"] | ["blood_be", "vital_map", "vent_pinsp"] | 60%                |
-| TUD_v2   | 76694 | ['SaO2', 'Lactat', 'PaO2', 'HR', 'BEa',  'PaCO2', 'pHa', 'SpO2', 'HaCO3']                                                                                                                                                                                                                                                 | ["PaO2", "PaCO2"]                         | 60%                |
+There are 3 modes to run the main.py
+1. create_missing dataset
+   - This is mainly used to create a test set for imputation techniques.
+   - It requires dataset_name, full_data, columns to add missing values to, missing pattern (step or random), missing percent
+2. impute
+  - for mimiciv, just directly use the imputer.
+  - In main.py, input which imputer do you want to use in the config file.
+  - Define the dataset_config which appropriate values.
+  - The state_vectors should contain independent x variables and also the missing variables. Here the missing variables are added just to load the data.
+3. eval
+  - it needs the list of imputers for which you want to check the performance.
+  - make sure that the imputers you are passing, you have the imputed data for that technique or imputer.
+  - saves results in evals/evaluation.csv

@@ -47,8 +47,6 @@ Imputation_results/Hopper-v4_w_imputed_nn_random.csv,,08-02-24 14:41,1.58E-05,0.
 Imputation_results/Hopper-v4_w_imputed_nn_random.csv,,08-02-24 14:41,0.000331075,0.010072254,0.018195453,0.982056448,obs_7
 Imputation_results/Hopper-v4_w_imputed_ffill_random.csv,,08-02-24 14:52,0.007266531,0.033902602,0.085243948,0.751149489,obs_6
 Imputation_results/Hopper-v4_w_imputed_ffill_random.csv,,08-02-24 14:52,0.01201316,0.04972187,0.109604562,0.348911651,obs_7
-imputed_ssl.csv,,24-02-24 4:00,0.029412384,0.131194906,0.17150039,-0.007260144,obs_6
-imputed_ssl.csv,,24-02-24 4:00,0.018310128,0.088101068,0.135314922,0.007629055,obs_7
 Imputation_results/Hopper-v4_w_imputed_nn_random.csv,,27-02-24 23:29,7.83E-06,0.002381766,0.002798075,0.999731879,obs_6
 Imputation_results/Hopper-v4_w_imputed_nn_random.csv,,27-02-24 23:29,0.018473684,0.089173353,0.13591793,-0.00123533,obs_7
 Imputation_results/Hopper-v4_w_imputed_nn_random.csv,,27-02-24 23:40,1.15E-05,0.002920012,0.003395377,0.999605191,obs_6
@@ -57,10 +55,6 @@ Imputation_results/Hopper-v4_w_imputed_nn_random.csv,,29-02-24 2:45,1.78E-05,0.0
 Imputation_results/Hopper-v4_w_imputed_nn_random.csv,,29-02-24 2:45,0.000184353,0.006865694,0.013577664,0.990008452,obs_7
 Imputation_results/mimiciv_w_imputed_nn_random.csv,,04-03-24 19:20,52.27939042,5.452181373,7.230448839,0.370865323,blood_paco2
 Imputation_results/mimiciv_w_imputed_nn_random.csv,,04-03-24 19:20,2358.969487,29.24911287,48.56922367,0.082749702,blood_pao2
-gan_imp.csv,,05-03-24 21:30,0.029674039,0.130708965,0.172261544,-0.016220833,obs_6
-gan_imp.csv,,05-03-24 21:30,0.018865157,0.086022425,0.137350489,-0.022452356,obs_7
-gan_imp_new.csv,,13-03-24 16:48,0.205752197,0.419680972,0.453599159,-6.046215262,obs_6
-gan_imp_new.csv,,13-03-24 16:48,0.358803357,0.582892144,0.599001967,-18.44639746,obs_7
 Imputation_results/mimiciv_w_imputed_nn_random.csv,,13-03-24 19:05,52.26143237,5.48922593,7.229206898,0.371081432,blood_paco2
 Imputation_results/mimiciv_w_imputed_nn_random.csv,,13-03-24 19:05,2361.414674,28.38084276,48.59438933,0.081798927,blood_pao2
 Imputation_results/hopper_imputed,nn,20-03-24 16:40,1.97E-05,0.003011242,0.004442531,0.999324116,obs_6
